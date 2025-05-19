@@ -1,0 +1,143 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+const navItems = ["Inicio", "Productos", "Servicios", "Contacto"];
+---
+
+<MainLayout>
+	<header>
+		<nav class="navbar">
+			<input
+				type="checkbox"
+				id="menu-toggle"
+				class="navbar__checkbox menu-toggle"
+			/>
+			<label for="menu-toggle" class="navbar__icon hamburger">☰</label>
+
+			<ul class="navbar__list">
+				{
+					navItems.map((item) => (
+						<li class="navbar__list__item">
+							<a href="#">{item}</a>
+						</li>
+					))
+				}
+                <li class="navbar__list__item">
+							<a href="/profile">Mi perfil</a>
+						</li>
+			</ul>
+		</nav>
+	</header>
+</MainLayout>
+
+<style>
+	header {
+		min-height: 50px;
+		position: absolute;
+		top: 0;
+		z-index: 10;
+		width: 100%;
+
+		.navbar {
+			border: 1px solid
+				color-mix(in oklch, var(--indigo) 12%, transparent);
+			background: conic-gradient(
+				at 0% 2%,
+				color-mix(in oklch, var(--indigo) 50%, transparent) 10%,
+				color-mix(in oklch, var(--peachy-cream) 50%, transparent) 30%,
+				color-mix(in oklch, var(--creamy-ivory) 50%, transparent) 50%
+			);
+			backdrop-filter: blur(15px);
+			padding: 1rem;
+
+			.navbar__list {
+				display: flex;
+				justify-content: center;
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				gap: 1rem;
+				width: 100%;
+
+				.navbar__list__item a {
+					color: var(--white);
+					text-decoration: none;
+					padding: 0.5rem 1rem;
+					border-radius: 4px;
+					transition: all 0.2s ease;
+				}
+
+				.navbar__list__item a:hover {
+					background: color-mix(
+						in oklch,
+						var(--indigo) 20%,
+						transparent
+					);
+					border-bottom: 5px solid var(--indigo);
+				}
+			}
+
+			.menu-toggle,
+			.hamburger {
+				display: none;
+			}
+		}
+	}
+	/* Tablet: 2 filas */
+	@media (max-width: 768px) {
+		header {
+			.navbar {
+				.navbar__list {
+					flex-wrap: wrap;
+					.navbar__list__item {
+						width: 25%;
+
+						.navbar__list__item a {
+							width: 100%;
+							padding: 0 2rem;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	/* Mobile: menú hamburguesa */
+	@media (max-width: 480px) {
+		header {
+			.navbar {
+				border-radius: 1em;
+				width: fit-content;
+				transition: all 0.3 ease-in-out;
+				.navbar__list {
+					display: none;
+					padding: 2rem 4rem;
+					text-align: center;
+					flex-direction: column;
+					width: 100%;
+					.navbar__list__item {
+						width: 100%;
+					}
+					.navbar__list__item a:hover {
+						background: color-mix(
+							in oklch,
+							var(--indigo) 20%,
+							transparent
+						);
+						border: 1px solid var(--indigo);
+					}
+				}
+				.menu-toggle:checked ~ .navbar__list {
+					display: flex;
+				}
+
+				.hamburger {
+					display: block;
+					color: var(--white);
+					font-size: 1.5rem;
+					font-weight: 200;
+					cursor: pointer;
+				}
+			}
+		}
+	}
+</style>

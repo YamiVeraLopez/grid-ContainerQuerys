@@ -1,5 +1,22 @@
 {
-  "extends": "astro/tsconfigs/strict",
+  "extends": "astro/tsconfigs/base",
   "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"]
+  "exclude": ["dist"],
+  "strict": false,
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@layouts/*": ["src/layouts/*"],
+      "@pages/*": ["src/pages/*"]
+    },
+    "noEmit": true,
+    "checkJs": false
+  }
 }
+
+/* strict: false,
+    compilerOptions: {
+      // Opciones adicionales si necesitas
+      noEmit: true,
+      checkJs: false, */

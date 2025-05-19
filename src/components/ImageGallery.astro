@@ -1,0 +1,168 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+const images = [
+	{
+		src: "https://i.pinimg.com/736x/ae/84/a3/ae84a352b9e907cba8be281cdc83fb60.jpg",
+	},
+	{
+		src: "https://i.pinimg.com/736x/05/a2/83/05a283accf7f2e522b6d0fa04ce2ce34.jpg",
+	},
+	{
+		src: "https://i.pinimg.com/736x/b7/51/1c/b7511c6aa8b92475ddcc8e20bba261d1.jpg",
+	},
+	{
+		src: "https://i.pinimg.com/736x/2e/fe/fd/2efefd80abde5ae861ee36bc226248c6.jpg",
+	},
+	{
+		src: "https://i.pinimg.com/736x/b1/85/b1/b185b1c41d7930de7a1bd8b5a71f5a7e.jpg",
+	},
+	{
+		src: "https://i.pinimg.com/736x/08/6f/af/086faf64e2bcde9cc1312590c5455d78.jpg",
+	},
+	{
+		src: "https://i.pinimg.com/736x/4f/3d/ac/4f3dac87f6f11852d0fc1f01521df2d1.jpg",
+	},
+	{
+		src: "https://i.pinimg.com/736x/03/d8/33/03d833af447e2165202fcb3bd9ddc0a9.jpg",
+	},
+	{
+		src: "https://i.pinimg.com/736x/59/34/e0/5934e018559a666ad6e06d606173467b.jpg",
+	},
+	{
+		src: "https://i.pinimg.com/736x/89/e3/04/89e304f5cc85149feb23112efc9a5f41.jpg",
+	},
+];
+---
+
+<MainLayout>
+	<article class="gallery">
+		<h1 class="gallery__title">Galería de Tattos</h1>
+		<section class="gallery__container">
+			{
+				images.map((image) => (
+					<figure class="gallery__container__image">
+						<img src={image.src} alt="" loading="lazy" />
+					</figure>
+				))
+			}
+		</section>
+	</article>
+</MainLayout>
+
+<style>
+
+	.gallery {
+		padding: 2rem;
+        margin-top: 50px;
+		.gallery__title {
+			text-align: center;
+			font-family: "Rye", serif;
+			font-weight: 300;
+			margin: 1rem;
+		}
+
+		.gallery__container {
+            padding: 1rem;
+			border: 1px solid
+				color-mix(in oklch, var(--indigo) 12%, transparent);
+			border-radius: 1em;
+			background: conic-gradient(
+				at 0% 2%,
+				color-mix(in oklch, var(--indigo) 12%, transparent) 10%,
+				color-mix(in oklch, var(--peachy-cream) 8%, transparent) 30%,
+				color-mix(in oklch, var(--creamy-ivory) 5%, transparent) 50%
+			);
+			display: grid;
+			grid-template-columns: repeat(4, minmax(150px, 1fr));
+			gap: 1rem;
+			grid-auto-rows: 350px;
+			grid-auto-flow: dense;
+
+			.gallery__container__image {
+				display: grid;
+				place-items: center;
+				overflow: hidden;
+				border-radius: 8px;
+
+				img {
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+					border-radius: 8px;
+					transition: transform 0.3s ease;
+				}
+			}
+
+			.gallery__container__image:hover img {
+				transform: scale(1.05);
+			}
+
+			.gallery__container__image:nth-child(1) {
+				grid-column: span 2;
+				grid-row: span 1;
+			}
+			.gallery__container__image:nth-child(2) {
+				grid-column: span 1;
+				grid-row: span 2;
+			}
+			.gallery__container__image:nth-child(3) {
+				grid-column: span 1;
+				grid-row: span 2;
+			}
+			.gallery__container__image:nth-child(4) {
+				grid-column: span 1;
+				grid-row: span 2;
+			}
+			.gallery__container__image:nth-child(5) {
+				grid-column: span 1;
+				grid-row: span 2;
+			}
+			.gallery__container__image:nth-child(6) {
+				grid-column: span 1;
+				grid-row: span 2;
+			}
+			.gallery__container__image:nth-child(7) {
+				grid-column: span 2;
+				grid-row: span 3;
+			}
+			.gallery__container__image:nth-child(8) {
+				grid-column: span 1;
+				grid-row: span 3;
+			}
+			.gallery__container__image:nth-child(9) {
+				grid-column: span 1;
+				grid-row: span 2;
+			}
+			.gallery__container__image:nth-child(10) {
+				grid-column: span 1;
+				grid-row: span 1;
+			}
+		}
+	}
+	@media (width >= 1024px) {
+		.gallery {
+			.gallery__container {
+				grid-template-columns: repeat(4, 1fr);
+			}
+		}
+	}
+	@media screen and (max-width: 768px) {
+		.gallery {
+             margin-top: 70px;
+			.gallery__container {
+				grid-template-columns: repeat(3, 1fr);
+				grid-auto-rows: 150px;
+			}
+		}
+	}
+	@media screen and (max-width: 480px) {
+		.gallery {
+             margin-top: 50px;
+			.gallery__container {
+				grid-template-columns: 1fr;
+				grid-auto-rows: 150px;
+			}
+		}
+	}
+</style>

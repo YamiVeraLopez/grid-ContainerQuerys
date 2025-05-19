@@ -1,0 +1,205 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+const user = {
+	name: "Ana Pérez",
+	rol: "Diseñadora UX",
+	image: "https://i.pinimg.com/736x/9c/0f/a7/9c0fa7d3d7bddd471fd7261b1b5f8c5a.jpg",
+};
+---
+
+<MainLayout>
+	<main class="profile">
+		<section class="profile__banner"></section>
+        <section class="container__profile">
+            <figure class="profile__avatar">
+                <img src={user.image} alt="Foto avatar" />
+                <figcaption class="profile__avatar__info">
+                    <p class="profile__avatar__info__name">{user.name}</p>
+                    <p class="profile__avatar__info__rol">{user.rol}</p>
+                </figcaption>
+                <button class="profile__avatar__edit"
+                    ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="24px"
+                        viewBox="0 -960 960 960"
+                        width="24px"
+                        fill="#0080fa "
+                        ><path
+                            d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h357l-80 80H200v560h560v-278l80-80v358q0 33-23.5 56.5T760-120H200Zm280-360ZM360-360v-170l367-367q12-12 27-18t30-6q16 0 30.5 6t26.5 18l56 57q11 12 17 26.5t6 29.5q0 15-5.5 29.5T897-728L530-360H360Zm481-424-56-56 56 56ZM440-440h56l232-232-28-28-29-28-231 231v57Zm260-260-29-28 29 28 28 28-28-28Z"
+                        ></path></svg
+                    ></button
+                >
+            </figure>
+        </section>
+		<section class="profile__modal">
+			<form action="" class="profile__modal__form">
+				<div class="profile__modal__form__item">
+					<label for="url"> Url de Avatar: </label>
+					<input type="url" name="urlAvatar" id="url" />
+				</div>
+				<div class="profile__modal__form__item">
+					<label for="name"> Nombre: </label>
+					<input type="text" name="name" id="name" />
+				</div>
+				<div class="profile__modal__form__item">
+					<label for="rol"> Rol: </label>
+					<input type="text" name="rol" id="rol" />
+				</div>
+			</form>
+		</section>
+	</main>
+</MainLayout>
+<style>
+	.profile {
+        container-type: inline-size;
+		container-name: profile;
+		height: 100dvh;
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		padding: 2rem;
+        width: 90%;
+        margin: 0 auto;
+		.profile__banner {
+			width: 90%;
+			height: 150px;
+			border-radius: 40px 40px 0 0;
+			background: conic-gradient(
+					at 0% 2%,
+					color-mix(in oklch, var(--indigo) 50%, transparent) 10%,
+					color-mix(in oklch, var(--peachy-cream) 30%, transparent)
+						30%,
+					color-mix(in oklch, var(--creamy-ivory) 50%, transparent)
+						50%
+				);
+				backdrop-filter: blur(15px);
+		}
+		.profile__avatar {			
+			width: 150px;
+			height: 150px;
+			border-radius: 50%;
+			border: 1px solid var(--white);
+			position: relative;
+			bottom: 80px;
+			.profile__avatar__info {
+				font-size: 0.6 rem;
+				text-align: center;
+				background: conic-gradient(
+					at 0% 2%,
+					color-mix(in oklch, var(--indigo) 20%, transparent) 10%,
+					color-mix(in oklch, var(--peachy-cream) 20%, transparent)
+						30%,
+					color-mix(in oklch, var(--creamy-ivory) 20%, transparent)
+						50%
+				);
+				backdrop-filter: blur(15px);
+				border-radius: 8px;
+				padding: 0.5rem 1rem;
+				display: none;
+				.profile__avatar__info__name {
+					font-family: "Dongle", sans-serif;
+					text-transform: uppercase;
+					font-size: 1.5rem;
+					color: var(--white);
+					position: relative;
+				}
+				.profile__avatar__info__rol {
+					font-family: "Sacramento", cursive;
+				}
+			}
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				border-radius: 50%;
+			}
+			.profile__avatar__edit {
+                display: none;
+				position: absolute;
+				right: 8px;
+				bottom: 15px;
+				border: none;
+				border-radius: 5px;
+				padding: 0.2rem;
+				padding-top: 0.1rem;
+				background: conic-gradient(
+					at 0% 2%,
+					color-mix(in oklch, var(--indigo) 20%, transparent) 10%,
+					color-mix(in oklch, var(--peachy-cream) 20%, transparent)
+						30%,
+					color-mix(in oklch, var(--creamy-ivory) 20%, transparent)
+						50%
+				);
+				backdrop-filter: blur(15px);               
+			}
+		}
+		.profile__modal {
+			opacity: 0;
+			position: absolute;
+			margin: 0 auto;
+			display: grid;
+			width: 100%;
+			height: 100dvh;
+			background-color: color-mix(
+				in oklch,
+				var(--black) 80%,
+				transparent
+			);
+			backdrop-filter: blur(15px);
+			place-items: center;
+			.profile__modal__form {
+				display: none;
+				width: 80%;
+				height: auto;
+				padding: 3rem 2rem;
+				background-color: var(--white);
+				border-radius: 40px;
+				color: var(--purple);
+				font-size: 14px;
+
+				.profile__modal__form__item {
+					max-width: 350px;
+					margin: 1rem;
+					display: flex;
+					flex-direction: column;
+				}
+
+				.profile__modal__form__item input {
+					border-radius: 8px;
+					border: 1px solid var(--indigo);
+					background-color: none;
+					padding: 0.3rem;
+				}
+			}
+		}
+
+       }   /* Contenedor mediano: imagen + nombre */
+@container profile (min-width: 400px) and (max-width: 700px) {
+    .profile {
+        .profile__avatar {			
+            .profile__avatar__info {                        
+                display: block;				
+                .profile__avatar__info__rol {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+@container profile (min-width: 701px) {
+    .profile {
+        .profile__avatar {			
+            .profile__avatar__info {                        
+                display: block;				
+                .profile__avatar__info__rol {
+                    display: block;
+                }
+            }
+            .profile__avatar__edit  {
+                display: block;
+            }
+        }
+    }
+}
+</style>
